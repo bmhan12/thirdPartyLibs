@@ -15,12 +15,12 @@ jobs:
     strategy:
       matrix:
         include:
-          #- name: Pangea 2 (centos 7.6, gcc 8.3.0, open-mpi 2.1.5, mkl 2019.3)
-          #  DOCKER_REPOSITORY: han12/pangea2-gcc8.3.0-openmpi2.1.5-mkl2019.3
-          #  DOCKERFILE: docker/TotalEnergies/Dockerfile
-          #  DOCKER_ROOT_IMAGE: totogaz/pangea2-gcc8.3.0-openmpi2.1.5-mkl2019.3-no-geosx:0.0.1
-          #  INSTALL_DIR: /workrd/SCR/GEOSX/install/gcc8/GEOSX_TPL-${{ github.event.number }}-${{github.run_number}}-${{ github.sha }}
-          #  os: ubuntu-latest
+          - name: Pangea 2 (centos 7.6, gcc 8.3.0, open-mpi 2.1.5, mkl 2019.3)
+            DOCKER_REPOSITORY: han12/pangea2-gcc8.3.0-openmpi2.1.5-mkl2019.3
+            DOCKERFILE: docker/TotalEnergies/Dockerfile
+            DOCKER_ROOT_IMAGE: totogaz/pangea2-gcc8.3.0-openmpi2.1.5-mkl2019.3-no-geosx:0.0.1
+            INSTALL_DIR: /workrd/SCR/GEOSX/install/gcc8/GEOSX_TPL-${{ github.event.number }}-${{github.run_number}}-${{ github.sha }}
+            os: ubuntu-latest
           #- name: Pecan GPU (centos 7.7, gcc 8.2.0, open-mpi 4.0.1, mkl 2019.5, cuda 10.2.89p2)
           #  DOCKER_REPOSITORY: han12/pecan-gpu-gcc8.2.0-openmpi4.0.1-mkl2019.5-cuda10.2.89p2
           #  DOCKERFILE: docker/TotalEnergies/Dockerfile
@@ -43,9 +43,9 @@ jobs:
             os: ubuntu-latest
           - name: Ubuntu (20.04, gcc 9.3.0, open-mpi 4.0.3)
             GCC_MAJOR_VERSION: 9
-            DOCKER_REPOSITORY: han12/ubuntu20.04-gcc${matrix.GCC_MAJOR_VERSION}
+            DOCKER_REPOSITORY: han12/ubuntu20.04-gcc${{ matrix.GCC_MAJOR_VERSION }}
             DOCKERFILE: docker/gcc-ubuntu/Dockerfile
-            DOCKER_COMPILER_BUILD_ARG: "--build-arg GCC_MAJOR_VERSION=${matrix.GCC_MAJOR_VERSION}"
+            DOCKER_COMPILER_BUILD_ARG: "--build-arg GCC_MAJOR_VERSION=${{ matrix.GCC_MAJOR_VERSION }}"
             os: ubuntu-latest
           #- name: Ubuntu (20.04, gcc 10.3.0, open-mpi 4.0.3)
           #  GCC_MAJOR_VERSION: 10

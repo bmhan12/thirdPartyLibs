@@ -1,7 +1,7 @@
 #!/bin/bash
 env
 
-if [ "$os" == "ubuntu-latest" ]
+if [ "$OS" == "ubuntu-latest" ]
 then
   # We save memory for the docker context
   echo "**/*.rpm" >> .dockerignore
@@ -27,7 +27,7 @@ then
 
   docker push ${DOCKER_REPOSITORY}:${DOCKER_TAG}
 
-elif [ "$os" == "macos-12" ]
+elif [ "$OS" == "macos-12" ]
 then
   # It is not immediate to get the version of open-mpi we want.
   # (The revision is identified through its git commit hash of
@@ -56,6 +56,6 @@ then
   python3 macosx_TPL_mngt.py ${GEOSX_TPL_DIR} geosx-key.json ${BREW_HASH}
 
 else
-  echo "os $os not found"
+  echo "os $OS not found"
   exit 1
 fi

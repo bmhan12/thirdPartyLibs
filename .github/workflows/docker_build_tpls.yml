@@ -75,6 +75,27 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+    # It's easier to reference named variables than indexes of the matrix
+    - name: Set Environment
+      env:
+        dockerfile: ${{ matrix.DOCKERFILE }}
+        docker_repository: ${{ matrix.DOCKER_REPOSITORY }}
+        docker_compiler_build_arg: ${{ matrix.DOCKER_COMPILER_BUILD_ARG }}
+        os: ${{ matrix.os }}
+        gcc_major_version: ${{ matrix.GCC_MAJOR_VERSION }}
+        install_dir: ${{ matrix.INSTALL_DIR }}
+        host_config: ${{ matrix.HOST_CONFIG }}
+        docker_root_image: ${{ matrix.DOCKER_ROOT_IMAGE }}
+      run: |
+        echo "DOCKERFILE=$dockerfile" >> $GITHUB_ENV
+        echo "DOCKER_REPOSITORY=$docker_repository" >> $GITHUB_ENV
+        echo "DOCKER_COMPILER_BUILD_ARG=$docker_compiler_build_arg" >> $GITHUB_ENV
+        echo "OS=$os" >> $GITHUB_ENV
+        echo "GCC_MAJOR_VERSION=$gcc_major_version" >> $GITHUB_ENV
+        echo "INSTALL_DIR=$install_dir" >> $GITHUB_ENV
+        echo "HOST_CONFIG=$host_config" >> $GITHUB_ENV
+        echo "DOCKER_ROOT_IMAGE=$docker_root_image" >> $GITHUB_ENV
+
     - name: Print environment
       run: printenv
 

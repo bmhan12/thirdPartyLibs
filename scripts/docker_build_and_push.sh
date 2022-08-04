@@ -1,7 +1,7 @@
 #!/bin/bash
 env
 
-if [ "$OS_TYPE" == "Linux" ]
+if [ "$os" == "ubuntu-latest" ]
 then
   # We save memory for the docker context
   echo "**/*.rpm" >> .dockerignore
@@ -27,7 +27,7 @@ then
 
   docker push ${DOCKER_REPOSITORY}:${DOCKER_TAG}
 
-elif [ "$OS_TYPE" == "OSX" ]
+elif [ "$os" == "macos-12" ]
 then
   # It is not immediate to get the version of open-mpi we want.
   # (The revision is identified through its git commit hash of

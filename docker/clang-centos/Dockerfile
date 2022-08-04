@@ -16,7 +16,6 @@ ARG TMP_DIR
 COPY docker/clang-centos/compiler-wrappers-1-12.tce.ch6.x86_64.rpm \
     docker/clang-centos/gcc493-2.0-6.ch6.x86_64.rpm \
     docker/clang-centos/clang-9.0.0-3-2.tce.ch6.x86_64.rpm \
-    Does_not_Exist \
     ${TMP_DIR}/
 
 # Removing gpg signature warning.
@@ -28,9 +27,6 @@ RUN yum -y install \
     blas-devel \
     lapack-devel \
     zlib-devel \
-    ${TMP_DIR}/compiler-wrappers-1-12.tce.ch6.x86_64.rpm \
-    ${TMP_DIR}/gcc493-2.0-6.ch6.x86_64.rpm \
-    ${TMP_DIR}/clang-9.0.0-3-2.tce.ch6.x86_64.rpm \
     docker/clang-centos/compiler-wrappers-1-12.tce.ch6.x86_64.rpm \
     docker/clang-centos/gcc493-2.0-6.ch6.x86_64.rpm \
     docker/clang-centos/clang-9.0.0-3-2.tce.ch6.x86_64.rpm \

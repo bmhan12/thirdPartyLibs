@@ -56,6 +56,6 @@ then
   python3 macosx_TPL_mngt.py ${GEOSX_TPL_DIR} geosx-key.json ${BREW_HASH}
 
 else
-  echo "OS_TYPE not found"
+  echo "os $os not found"
   exit 1
 fi

@@ -100,7 +100,7 @@ jobs:
       run: printenv
 
     - name: Run the docker build and push docker script
-      run: ./scripts/docker_build_and_push.sh
+      run: bash -x ./scripts/docker_build_and_push.sh
 
   dump_contexts_to_log:
     runs-on: ubuntu-latest

@@ -75,7 +75,8 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    # It's easier to reference named variables than indexes of the matrix
+    # It's easier to reference named environment variables than
+    # indexes of the matrix or github context variables
     - name: Set Environment
       env:
         dockerfile: ${{ matrix.DOCKERFILE }}
@@ -86,6 +87,11 @@ jobs:
         install_dir: ${{ matrix.INSTALL_DIR }}
         host_config: ${{ matrix.HOST_CONFIG }}
         docker_root_image: ${{ matrix.DOCKER_ROOT_IMAGE }}
+
+        pull_request_number: ${{ github.event.number }}
+        build_number: ${{ github.run_number }}
+        commit: ${{ github.sha }}
+        build_dir: ${{ github.workspace }}
       run: |
         echo "DOCKERFILE=$dockerfile" >> $GITHUB_ENV
         echo "DOCKER_REPOSITORY=$docker_repository" >> $GITHUB_ENV
@@ -95,6 +101,10 @@ jobs:
         echo "INSTALL_DIR=$install_dir" >> $GITHUB_ENV
         echo "HOST_CONFIG=$host_config" >> $GITHUB_ENV
         echo "DOCKER_ROOT_IMAGE=$docker_root_image" >> $GITHUB_ENV
+        echo "PULL_REQUEST_NUMBER=$pull_request_number" >> $GITHUB_ENV
+        echo "BUILD_NUMBER=$build_number" >> $GITHUB_ENV
+        echo "COMMIT=$commit" >> $GITHUB_ENV
+        echo "BUILD_DIR=$build_dir" >> $GITHUB_ENV
 
     - name: Print environment
       run: printenv

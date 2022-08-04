@@ -4,7 +4,6 @@ env
 if [ "$OS" == "ubuntu-latest" ]
 then
   # We save memory for the docker context
-  echo "**/*.rpm" >> .dockerignore
   echo .git > .dockerignore
   # This script will build and push a DOCKER_REPOSITORY:DOCKER_TAG image build from DOCKERFILE
   # with (optional) DOCKER_COMPILER_BUILD_ARG build arguments.

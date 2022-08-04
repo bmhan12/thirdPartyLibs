@@ -3,6 +3,7 @@ env
 
 if [ "$OS" == "ubuntu-latest" ]
 then
+  echo "Inside ubuntu call!"
   # We save memory for the docker context
   echo "**/*.rpm" >> .dockerignore
   echo .git > .dockerignore

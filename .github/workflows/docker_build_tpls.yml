@@ -10,6 +10,7 @@ jobs:
     name: ${{ matrix.name }}
 
     runs-on: ${{ matrix.os }}
+    allow-failure: true
 
     #TODO: Change DOCKER_REPOSITORY root back to "geosx"
     strategy:
